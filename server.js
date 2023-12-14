@@ -2,6 +2,7 @@ const {Pool} = require('pg');
 const express = require('express');
 const dotenv = require('dotenv')
 const app = express();
+const cors = require('cors')
 const PORT = process.env.PORT || 3000;
 dotenv.config()
 
@@ -9,6 +10,7 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 })
 app.use(express.json())
+app.use(cors())
 
 //get route
 app.get('/api/book', async (req, res, next) => {
