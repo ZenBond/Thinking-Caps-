@@ -1,5 +1,8 @@
-CREATE TABLE users (
-user_id SERIAL PRIMARY KEY,
-username VARCHAR(255) NOT NULL,
-password VARCHAR(255) NOT NULL
+CREATE TABLE book (
+book_id SERIAL PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+author VARCHAR(255) NOT NULL,
+summary TEXT,
+picture VARCHAR(255),
+price DECIMAL(10, 2)
 );
