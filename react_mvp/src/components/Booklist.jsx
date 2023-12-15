@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const BookList = () => {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    // Fetch data from the backend when the component mounts
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/book');
-        setBooks(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array ensures the effect runs only once on mount
-
-  return (
-    <div>
-      <h2>Book List</h2>
-      <ul>
-        {books.map((book) => (
-          <li key={book.book_id}>
-            <img className='book-img' src={book.picture} alt={book.title} />
-            {book.title} by {book.author}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+const BookList = ({books, getSingleBook}) => {
+    function handleClick(e) {
+        getSingleBook(e.currentTarget.id)
+    }
+    return (
+        <div>
+          <h2>Book List</h2>
+          <ul className="book-cards">
+            {books.map((book) => (
+              <li onClick={handleClick} id={book.book_id} key={book.book_id} className="book-card">
+                <img className='book-img' src={book.picture} alt={book.title} />
+                <div>
+                    <h3>{book.title}</h3>
+                    <p>by {book.author}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
 };
 
 export default BookList;
