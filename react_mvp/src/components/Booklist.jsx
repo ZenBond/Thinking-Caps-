@@ -1,7 +1,13 @@
-const BookList = ({books, getSingleBook}) => {
+const BookList = ({books, getSingleBook, removeBook}) => {
     function handleClick(e) {
         getSingleBook(e.currentTarget.id)
+        console.log(e.target)
     }
+    function handleRemove(e) {
+      removeBook(e.currentTarget.id)
+    }
+
+
     return (
         <div>
           <h2>Book List</h2>
@@ -12,6 +18,7 @@ const BookList = ({books, getSingleBook}) => {
                 <div>
                     <h3>{book.title}</h3>
                     <p>by {book.author}</p>
+                    <button id={book.book_id} onClick={handleRemove}>remove</button>
                 </div>
               </li>
             ))}

@@ -5,34 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -50,26 +22,87 @@
   list-style: none;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
+  /* overflow-x: auto;
+  animation: scroll 30s linear infinite; */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% * var(--n))); /* Move one full card width to the left */
+  }
 }
 
 .book-card {
   width: 150px;
   height: 220px;
   object-fit: cover;
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border: none;
   background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  --n: 1;
+}
+
+.book-card:hover {
+  transform: scale(1.05); 
 }
 
 .book-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .book-details {
   text-align: center;
 }
 
+.header{
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  background-color: #333;
+  color: #fff; 
+}
+
+.footer {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  background-color: #333;
+  color: #fff;
+}
+
+.single-book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-book-card {
+  display: flex;
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  overflow: hidden; 
+  margin-top: 20px;
+}
+
+.single-book-img {
+  width: 300px;
+  height: auto;
+}
+
+.single-book-details {
+  padding: 20px; 
+  color: #333;
+}
