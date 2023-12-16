@@ -7,8 +7,8 @@ function Header({onHomeClick, onAddBookClick}) {
     }
      return (
         <header className="header">
-            <h3>Half Booked</h3>
             <button onClick={handleClick}>Home</button>
+            <h3>Half Booked</h3>
             <button onClick={handleAddClick}>Add Book</button>
         </header>
     )

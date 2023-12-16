@@ -3,11 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: linear-gradient(135deg, #404040, #262626);
+  color: #333;
+  border-radius: 30px;
 }
 
 .card {
   padding: 2em;
+  
 }
+
 
 .read-the-docs {
   color: #888;
@@ -19,39 +24,57 @@
 }
 
 .book-cards {
-  list-style: none;
-  padding: 0;
   display: flex;
-  /* overflow-x: auto;
-  animation: scroll 30s linear infinite; */
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-100% * var(--n))); /* Move one full card width to the left */
-  }
+  flex-wrap: wrap;
+  padding-left: 80px;
+  gap: 25px;
+  width: 100%;
+  height: 50%;
 }
 
 .book-card {
-  width: 150px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: none;
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  flex: 0 0 calc(29% - 20px);
+  background: #f0f0f0;
+  border-radius: 10px;
+  height: 500px;
+  box-shadow: 0 4px 8px rgba(227, 227, 227, 0.1);
+  overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  --n: 1;
 }
 
 .book-card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
+
+.book-details {
+  padding: 1rem;
+  text-align: center;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #cd2519;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+
+.remove-button:hover {
+  background: #c62828; 
+}
+
+.card-content {
+  padding: 1rem;
+  text-align: center;
+}
+
 
 .book-img {
   width: 100%;
@@ -60,26 +83,35 @@
   border-radius: 8px;
 }
 
-.book-details {
-  text-align: center;
-}
+
 
 .header{
   position: fixed; 
-  top: 0; 
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  top: -15px; 
   left: 0; 
-  right: 0; 
+  right: 0;
+  padding-left: 30px;
+  padding-right: 5px; 
   background-color: #333;
-  color: #fff; 
+  color: #fff;
+  background: linear-gradient(135deg, #404040, #262626);
+  border-bottom: 1px solid #616161;
+  z-index: 1; 
 }
 
 .footer {
   position: fixed; 
-  bottom: 0; 
+  bottom: -20px; 
+  align-items: center;
   left: 0; 
   right: 0; 
   background-color: #333;
+  background: linear-gradient(1deg, #ffd700, #404040);
   color: #fff;
+  text-align:justify start;
 }
 
 .single-book-container {
