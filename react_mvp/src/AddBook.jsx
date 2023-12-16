@@ -74,10 +74,10 @@ function AddBook({ onHomeClick, onAddBookClick }) {
                 />
               </div>
               <div className="mb-3">
-                <input
+                <textarea
                   type="text"
                   className="form-control"
-                  placeholder="Summary"
+                  placeholder="Book Notes"
                   name="summary"
                   value={bookData.summary}
                   onChange={handleChange}

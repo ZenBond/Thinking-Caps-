@@ -27,6 +27,7 @@ function SingleBook({singleBook, onHomeClick, onAddBookClick}) {
           const res = await axios.put(`http://localhost:3000/api/book/${singleBook.book_id}`, editedBook);
     
           console.log('Book Edited:', res.data);
+          setEditedBook(res.data)
     
           setIsEditing(false);
         } catch (err) {
@@ -39,11 +40,11 @@ function SingleBook({singleBook, onHomeClick, onAddBookClick}) {
         <div className="single-book-container">
             <Header onAddBookClick={onAddBookClick} onHomeClick={onHomeClick}/>
             <div className="single-book-card">
-                <img className='single-book-img' src={singleBook.picture} alt={singleBook.title} />
+                <img className='single-book-img' src={editedBook.picture} alt={singleBook.title} />
                 <div className="single-book-details">
-                    <h3>{singleBook.title}</h3>
-                    <p>by {singleBook.author}</p>
-                    <p>{singleBook.summary}</p>
+                    <h3>{editedBook.title}</h3>
+                    <p>by {editedBook.author}</p>
+                    <p>{editedBook.summary}</p>
                     {isEditing ? (
             <form onSubmit={handleEditSubmit}>
               <div>
@@ -65,9 +66,9 @@ function SingleBook({singleBook, onHomeClick, onAddBookClick}) {
                 />
               </div>
               <div>
-                <label htmlFor="summary">Summary:</label>
+                <label htmlFor="summary">Notes:</label>
                 <textarea
-                  name="summary"
+                  name="notes"
                   value={editedBook.summary}
                   onChange={handleInputChange}
                 />
