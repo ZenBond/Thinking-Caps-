@@ -10,7 +10,7 @@ const BookList = ({books, getSingleBook, removeBook}) => {
 
     return (
         <div>
-          <h2>Book List</h2>
+          <div className="title">Books Read</div>
           <ul className="book-cards">
             {books.map((book) => (
               <li onClick={handleClick} id={book.book_id} key={book.book_id} className="book-card" >

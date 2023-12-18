@@ -7,9 +7,14 @@ function Header({onHomeClick, onAddBookClick}) {
     }
      return (
         <header className="header">
-            <button onClick={handleClick}><img src="home.png" alt="" /></button>
-            <h3>Half Booked</h3>
-            <button onClick={handleAddClick}>+</button>
+            <button className="header-btn" onClick={handleClick}>Home</button>
+            <div className="logo">
+            <h3 className="app-title">
+                Thinking Caps
+                <img className="beanie" src="beanie.png" alt="" />
+            </h3>
+            </div>
+            <button className="header-add" onClick={handleAddClick}>+</button>
         </header>
     )
 }

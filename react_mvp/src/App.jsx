@@ -86,7 +86,6 @@ function App() {
     <div>
       <Header showAddBookForm={showAddBookForm} onAddBookClick={onAddBookClick}/>
       <BookList books={books} getSingleBook={getSingleBook} removeBook={removeBook}/>
-      <Footer />
     </div>
   )
 }
