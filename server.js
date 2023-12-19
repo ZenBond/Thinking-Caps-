@@ -11,7 +11,7 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 })
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'react_mvp/build')));
+app.use(express.static(path.join(__dirname, 'react_mvp')));
 app.use(cors())
 
 
@@ -91,7 +91,7 @@ app.delete('/api/book/:id', async (req, res, next) => {
 })
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'react_mvp/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'react_mvp', 'index.html'));
   });
 
 app.use((req, res, next) => {
