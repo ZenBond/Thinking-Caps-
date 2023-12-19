@@ -163,6 +163,7 @@ body {
 .title {
   color: white;
   height: 50px;
+  padding-top: 20px;
   font-size: 30px;
 }
 
@@ -170,5 +171,9 @@ body {
 .app-title {
   margin-right: 50px;
   position: relative;
+}
 
+.beanie {
+  position: relative;
+  right: 30px;
 }

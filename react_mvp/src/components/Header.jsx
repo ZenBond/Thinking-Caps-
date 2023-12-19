@@ -7,10 +7,9 @@ function Header({onHomeClick, onAddBookClick}) {
     }
      return (
         <header className="header">
-            <button className="header-btn" onClick={handleClick}>Home</button>
+            <button className="header-btn" onClick={handleClick}>Thinking Caps</button>
             <div className="logo">
             <h3 className="app-title">
-                Thinking Caps
                 <img className="beanie" src="beanie.png" alt="" />
             </h3>
             </div>

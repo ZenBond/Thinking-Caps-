@@ -4,7 +4,6 @@ import BookList from './components/Booklist'
 import SingleBook from './components/SingleBook';
 import Loading from './components/Loading';
 import Header from './components/Header';
-import Footer from './Footer';
 import AddBook from './AddBook';
 
 import './App.css'
@@ -14,6 +13,19 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [books, setBooks] = useState([]);
   const [showAddBookForm, setShowAddBookForm] = useState(false)
+  const [bookData, setBookData] = useState({
+    title: '',
+    author: '',
+    summary: '',
+    picture: '',
+  });
+  const [newBook, setNewBook] = useState({
+    title: '',
+    author: '',
+    summary: '',
+    picture: '',
+  })
+  
   
 
   //function to get single book
@@ -23,9 +35,29 @@ function App() {
     console.log(singleBook)
   }
 
-  const onBookUpdate = (updatedBook) => {
-    setSingleBook(updatedBook);
+  //post helper
+  const handleAddToLibrary = (book) => {
+    setNewBook({
+      title: book.title,
+      author: book.author_name,
+      summary: book.description ? book.description : 'Add Book notes',
+      picture: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`,
+    });
   };
+
+  //post route
+  const handlePostSubmit = async () => {
+    try {
+      const res = await axios.post('http://localhost:3000/api/book', newBook);
+      console.log('Book Added', res.data);
+      // onAddBookClick();
+      console.log('posting')
+    } catch (err) {
+      console.error('Error adding book:', err.message);
+      console.error(err.response);
+    }
+  };
+  
 
 
   const removeBook = async (id) => {
@@ -71,7 +103,7 @@ function App() {
 
 
   if(showAddBookForm) {
-    return <AddBook onHomeClick={onHomeClick} onAddBookClick={onAddBookClick}/>
+    return <AddBook newBook={newBook} setNewBook={setNewBook} bookData={bookData} setBookData={setBookData} handleAddToLibrary={handleAddToLibrary} handlePostSubmit={handlePostSubmit} onHomeClick={onHomeClick} onAddBookClick={onAddBookClick}/>
   }
 
   if(loading) {
@@ -84,7 +116,7 @@ function App() {
 
   return (
     <div>
-      <Header showAddBookForm={showAddBookForm} onAddBookClick={onAddBookClick}/>
+      <Header onHomeClick={onHomeClick} showAddBookForm={showAddBookForm} onAddBookClick={onAddBookClick}/>
       <BookList books={books} getSingleBook={getSingleBook} removeBook={removeBook}/>
     </div>
   )

@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import SearchResultCard from './SearchCardResult';
 import axios from 'axios'
 
-function AddBook({ onHomeClick, onAddBookClick }) {
-  const [bookData, setBookData] = useState({
-    title: '',
-    author: '',
-    summary: '',
-    picture: '',
-  });
+function AddBook({newBook, setNewBook, onHomeClick, onAddBookClick, handleAddToLibrary, handlePostSubmit, bookData, setBookData }) {
+  const [searchResults, setSearchResults] = useState([]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,88 +13,69 @@ function AddBook({ onHomeClick, onAddBookClick }) {
     setBookData((prevData) => ({
       ...prevData,
       [name]: value,
+      
     }));
   };
 
+  const handleSearch = async () => {
+    try {
+      const searchResponse = await axios.get(
+        `https://openlibrary.org/search.json?q=${bookData.title}`
+      );
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try{
-        const res = await axios.post('http://localhost:3000/api/book', bookData)
-    
-        console.log('Book Added', res.data)
-    
-    
-        
-        setBookData({
-          title: '',
-          author: '',
-          summary: '',
-          picture: '',
-        });
-        onAddBookClick()
-    } catch (err) {
-        console.error('Error adding book:', err.message);
+      const results = searchResponse.data.docs;
+      console.log(results)
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error searching book:', error.message);
     }
-
-    
   };
 
-  return (
+
+return (
     <div>
       <Header onHomeClick={onHomeClick} onAddBookClick={onAddBookClick} />
       <div className="container">
         <div className="card">
           <div className="card-body">
             <h2 className="card-title">Add a New Book</h2>
-            <form onSubmit={handleSubmit} className="mb-3">
-              <div>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Title"
-                  name="title"
-                  value={bookData.title}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            <form className="mb-3">
               <div className="mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Author"
-                  name="author"
-                  value={bookData.author}
-                  onChange={handleChange}
-                  required
-                />
+                <label htmlFor="title" className="form-label">
+                  Search Book Title
+                </label>
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter book title"
+                    name="title"
+                    value={bookData.title}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={handleSearch}
+                  >
+                    Search
+                  </button>
+                </div>
               </div>
-              <div className="mb-3">
-                <textarea
-                  type="text"
-                  className="form-control"
-                  placeholder="Book Notes"
-                  name="summary"
-                  value={bookData.summary}
-                  onChange={handleChange}
-                  required
+              {searchResults.map((result) => (
+                <SearchResultCard
+                  key={result.key}
+                  book={result}
+                  onAddBookClick={onAddBookClick}
+                  handleAddToLibrary={handleAddToLibrary}
+                  handlePostSubmit={handlePostSubmit}
+                  searchResults={searchResults}
+                  setSearchResults={setSearchResults}
+                  newBook={newBook}
+                  setNewBook={setNewBook}
                 />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="url"
-                  className="form-control"
-                  placeholder="Picture url"
-                  name="picture"
-                  value={bookData.picture}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Add Book
-              </button>
+              ))}
             </form>
           </div>
         </div>
