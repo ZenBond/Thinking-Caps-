@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv')
 const app = express();
 const cors = require('cors')
+const path = require('path')
 const PORT = process.env.PORT || 3000;
 dotenv.config()
 
@@ -10,7 +11,10 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 })
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors())
+
+
 
 //get route
 app.get('/api/book', async (req, res, next) => {
@@ -86,7 +90,9 @@ app.delete('/api/book/:id', async (req, res, next) => {
     }
 })
 
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 
 app.use((req, res, next) => {
     const err = new Error('NOT FOUND ☹️');
