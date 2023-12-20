@@ -90,9 +90,6 @@ app.delete('/api/book/:id', async (req, res, next) => {
     }
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
 
 app.use((req, res, next) => {
     const err = new Error('NOT FOUND ☹️');
