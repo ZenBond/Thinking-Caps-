@@ -3,7 +3,9 @@
 
 # Overview
 • Tech - Javascript, HTML, CSS, PostgreSQL
+
 • Libraries - Express, React, Node, PG, CORS, AXIOS, Dotenv, Nodemon
+
 • Hosting - Render (Link currently expired)
 
 • Thinking Caps Book List is an innovative web application developed on a PERN (PostgreSQL, Express, React, Node.js) stack, designed to empower users in curating and managing personalized book lists. The app offers a seamless and intuitive interface for book enthusiasts to organize their reading materials efficiently.
