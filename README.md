@@ -34,10 +34,15 @@
 # Future Features
 • To Do's
 -Add a login and authentication for the user.
+
 -Add ability to create multiple lists.
+
 -Create a To read and a have read list.
+
 -Add a rating metric and price for books.
+
 -Add links to purchase books from online bookstores.
+
 -Add a community forum to comment and share posts.
 
 
