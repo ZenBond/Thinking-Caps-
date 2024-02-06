@@ -29,5 +29,14 @@
 • Add New Book Display
 <img width="1467" alt="Screenshot 2024-02-04 at 11 19 28 AM" src="https://github.com/ZenBond/Thinking-Caps-/assets/129324376/0e116175-4bce-4aaa-9d9b-f0e66d6f9aa2">
 
+# Future Features
+• To Do's
+-Add a login and authentication for the user.
+-Add ability to create multiple lists.
+-Create a To read and a have read list.
+-Add a rating metric and price for books.
+-Add links to purchase books from online bookstores.
+-Add a community forum to comment and share posts.
+
 
 
